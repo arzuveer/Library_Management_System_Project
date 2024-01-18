@@ -22,8 +22,9 @@ public class AuthorController {
         return "author has been added";
     }
     @GetMapping("/get_authors")
-    public List<Author> getAuthors()
+    public List<String> getAuthors()
     {
+
         return authorService.getAuthors();
     }
 

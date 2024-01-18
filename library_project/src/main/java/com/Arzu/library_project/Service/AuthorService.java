@@ -5,6 +5,7 @@ import com.Arzu.library_project.Repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,8 +18,14 @@ public class AuthorService {
         authorRepository.save(author);
     }
 
-    public List<Author> getAuthors()
+    public List<String> getAuthors()
     {
-        return authorRepository.findAll();
+        List<String> authors=new ArrayList<>();
+        List<Author> authorList=authorRepository.findAll();
+        for(Author author:authorList)
+        {
+            authors.add(author.getName());
+        }
+        return authors;
     }
 }

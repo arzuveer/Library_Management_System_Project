@@ -38,7 +38,7 @@ public class LibraryCard {
     @JoinColumn
     Student student;
 
-    @OneToMany(mappedBy = "libraryCard",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "libraryCard",cascade = CascadeType.PERSIST)
     List<Transaction> TransactionList= new ArrayList<>();
 
     @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
