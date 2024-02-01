@@ -6,6 +6,7 @@ import com.Arzu.library_project.DTO.StudentUpdateEmailRequestDto;
 import com.Arzu.library_project.Entity.LibraryCard;
 import com.Arzu.library_project.Entity.Student;
 import com.Arzu.library_project.Enum.CardStatus;
+import com.Arzu.library_project.Exception.StudentNotFoundException;
 import com.Arzu.library_project.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,22 @@ public class StudentService {
         studentResponseDto.setId(updatedStudent.getId());
         studentResponseDto.setName(updatedStudent.getName());
         studentResponseDto.setEmail(updatedStudent.getEmail());
+
+        return studentResponseDto;
+    }
+
+    public StudentResponseDto getByName(String name) throws StudentNotFoundException {
+
+        Student student;
+        try{
+            student=studentRepository.findByName(name);
+        }
+        catch (Exception e){
+            throw new StudentNotFoundException("no student exists with this name");
+        }
+       StudentResponseDto studentResponseDto= new StudentResponseDto();
+        studentResponseDto.setName(student.getName());
+        studentResponseDto.setEmail(student.getEmail());
 
         return studentResponseDto;
     }
